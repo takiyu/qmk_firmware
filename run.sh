@@ -7,4 +7,4 @@
 # qmk new-keymap -kb clueboard/66/rev3
 
 # 3) Compile
-qmk compile -kb clueboard/66/rev3 -km takiyu
+qmk compile -kb handwired/takiyu -km default
