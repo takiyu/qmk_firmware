@@ -16,7 +16,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         TO(_FUN), KC_TAB  , KC_Q    , KC_W   , KC_E   , KC_R   , KC_T   , _______,        KC_Y  , KC_U   , KC_I   , KC_O  , KC_P   , JP_AT  , JP_LBRC, KC_ENT ,
         TO(_1LA), KC_LCTL , KC_A    , KC_S   , KC_D   , KC_F   , KC_G   , _______,        KC_H  , KC_J   , KC_K   , KC_L  , JP_SCLN, JP_COLN, JP_RBRC, _______,
         TO(_2LA), MO(_FUN), KC_LSFT , KC_Z   , KC_X   , KC_C   , KC_V   , KC_B   ,        KC_B  , KC_N   , KC_M   ,JP_COMM, JP_DOT , JP_SLSH, JP_BSLS, KC_LSFT,
-        TO(_3LA), KC_LCTL , KC_CAPS , KC_LWIN, KC_LALT, KC_F13 , KC_SPC , _______,        KC_SPC, KC_ESC , KC_F13, KC_MENU, KC_RCTL, KC_WBAK, KC_WFWD, KC_PSCR
+        TO(_3LA), KC_LCTL , KC_CAPS , KC_LWIN, KC_LALT, KC_RALT, KC_SPC , _______,        KC_SPC, KC_ESC , KC_RALT,KC_MENU, KC_RCTL, KC_WBAK, KC_WFWD, KC_PSCR
     ),
 
     [_FUN] = LAYOUT_5x8(
