@@ -30,8 +30,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     // Function Layer
     [_1FN] = LAYOUT_5x8(
-        KC_ESC,   _______, KC_F1  , KC_F2  , KC_F3  , KC_F4  , KC_F5  , KC_F6  ,    KC_F7  , KC_F8  , KC_F9  , KC_F10 , KC_F11 , KC_F12 , XXXXXXX, _______,
-        TO(_HOM), _______, _______, _______, _______, _______, _______,___NG___,    _______, _______, KC_INS , _______, _______, _______, KC_PGUP, _______,
+        KC_ESC,   _______, KC_F1  , KC_F2  , KC_F3  , KC_F4  , KC_F5  , KC_F6  ,    KC_F7  , KC_F8  , KC_F9  , KC_F10 , KC_F11 , KC_F12 , XXXXXXX, KC_DEL ,
+        TO(_HOM), _______, _______, _______, _______, KC_F5  , _______,___NG___,    _______, _______, KC_INS , _______, _______, _______, KC_PGUP, _______,
         TO(_1FN), _______, _______, _______, _______, _______, _______,___NG___,    KC_LEFT, KC_DOWN, KC_UP  ,KC_RIGHT, _______, _______, KC_PGDN,___NG___,
         TO(_2VI),MO(_1FN), _______, _______, KC_DEL , _______, _______, _______,    _______, _______, _______, _______, _______, _______, _______, _______,
         TO(_3DE), _______, _______, _______, _______, _______, TK_SPC2,___NG___,    TK_SPC2, _______, _______, _______, _______, _______, _______, _______
@@ -54,4 +54,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         TO(_2VI),MO(_1FN), _______, _______, _______, _______, _______, _______,    _______, _______, _______, _______, _______, _______, _______, _______,
         TO(_3DE), _______, _______, _______, _______, _______, TK_SPC2,___NG___,    TK_SPC2, _______, _______, _______, _______, _______, _______, _______
     )
+};
+
+
+// Key overrides
+const key_override_t override_ctrl_del = ko_make_basic(MOD_MASK_CTRL, KC_BSPC, KC_DEL);
+const key_override_t override_ctrl_h = ko_make_basic(MOD_MASK_CTRL, KC_LEFT, KC_HOME);
+const key_override_t override_ctrl_l = ko_make_basic(MOD_MASK_CTRL, KC_RIGHT, KC_END);
+const key_override_t override_ctrl_j = ko_make_basic(MOD_MASK_CTRL, KC_DOWN, KC_PGDN);
+const key_override_t override_ctrl_k = ko_make_basic(MOD_MASK_CTRL, KC_UP, KC_PGUP);
+
+const key_override_t **key_overrides = (const key_override_t *[]){
+    &override_ctrl_del,
+    &override_ctrl_h, &override_ctrl_l, &override_ctrl_j, &override_ctrl_k,
+    NULL // End of array
 };
