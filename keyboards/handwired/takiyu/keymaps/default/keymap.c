@@ -10,7 +10,7 @@ enum custom_layer {
 };
 
 // TODO: Mouse key (Joystick)
-// TODO: Dynamic macros
+// TODO: Menu
 
 #define ___NG___ XXXXXXX
 #define TK_SPC1  LT(_1FN, KC_SPC)
@@ -57,10 +57,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 
 
-// Key overrides
-const key_override_t override_ctrl_del = ko_make_basic(MOD_MASK_CTRL, KC_BSPC, KC_DEL);
-const key_override_t override_shif_del = ko_make_basic(MOD_MASK_SHIFT, KC_BSPC, KC_DEL);
+// ------------------------------- Key overrides -------------------------------
+// Mod + BS -> Delete keys
+const key_override_t override_ctrl_bs = ko_make_basic(MOD_MASK_CTRL, KC_BSPC, KC_DEL);
+const key_override_t override_shif_bs = ko_make_basic(MOD_MASK_SHIFT, KC_BSPC, KC_DEL);
 
+// Mod + arrows -> Up/Down/Home/End  (Disabled)
 // const key_override_t override_ctrl_h = ko_make_basic(MOD_MASK_CTRL, KC_LEFT, KC_HOME);
 // const key_override_t override_ctrl_j = ko_make_basic(MOD_MASK_CTRL, KC_DOWN, KC_PGDN);
 // const key_override_t override_ctrl_k = ko_make_basic(MOD_MASK_CTRL, KC_UP, KC_PGUP);
@@ -70,12 +72,18 @@ const key_override_t override_shif_del = ko_make_basic(MOD_MASK_SHIFT, KC_BSPC, 
 // const key_override_t override_shif_k = ko_make_basic(MOD_MASK_SHIFT, KC_UP, KC_PGUP);
 // const key_override_t override_shif_l = ko_make_basic(MOD_MASK_SHIFT, KC_RIGHT, KC_END);
 
+// Shift + Space -> PageUp
 const key_override_t override_shif_space = ko_make_basic(MOD_MASK_SHIFT, KC_SPC, KC_PGUP);
 
+// Alt + Space/Esc for Windows
+const key_override_t override_alt_space = ko_make_basic(MOD_MASK_ALT, KC_SPC, KC_LWIN);
+const key_override_t override_alt_esc = ko_make_basic(MOD_MASK_ALT, KC_ESC, LALT(KC_TAB));
+
 const key_override_t **key_overrides = (const key_override_t *[]){
-    &override_ctrl_del, &override_shif_del,
+    &override_ctrl_bs, &override_shif_bs,
     // &override_ctrl_h, &override_ctrl_l, &override_ctrl_j, &override_ctrl_k,
     // &override_shif_h, &override_shif_l, &override_shif_j, &override_shif_k,
     &override_shif_space,
+    &override_alt_space, &override_alt_esc,
     NULL // End of array
 };
