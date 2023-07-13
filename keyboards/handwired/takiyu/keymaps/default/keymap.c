@@ -17,6 +17,7 @@ enum custom_layer {
 #define TK_SPC2  LT(_2VI, KC_SPC)
 #define TK_TAB3  LCTL(KC_TAB)
 #define TK_TAB2  LSFT(LCTL(KC_TAB))
+#define TK_PSCR  LALT(KC_PSCR)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // Home Layer
@@ -34,7 +35,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         TO(_HOM), _______, DM_REC1, _______, _______, KC_WFWD, _______,___NG___,    _______, KC_WBAK, KC_INS , _______, _______, DM_PLY1, KC_PGUP, _______,
         TO(_1FN), _______, DM_RSTP, _______, _______, _______, _______,___NG___,    KC_LEFT, KC_DOWN, KC_UP  ,KC_RIGHT, _______, _______, KC_PGDN,___NG___,
         TO(_2VI), _______, _______, _______, KC_DEL , _______, _______, _______,    _______, _______, _______, _______, _______, _______, _______, _______,
-        TO(_3DE), _______, _______, _______, _______, _______, TK_SPC2,___NG___,    TK_SPC2, _______, _______, _______, _______, KC_WBAK, KC_WFWD, _______
+        TO(_3DE), _______, _______, _______, _______, _______, TK_SPC2,___NG___,    TK_SPC2, _______, _______, _______, _______, KC_WBAK, KC_WFWD, TK_PSCR
     ),
 
     // Vim-like Layer
