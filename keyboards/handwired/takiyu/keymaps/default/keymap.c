@@ -61,18 +61,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 const key_override_t override_ctrl_del = ko_make_basic(MOD_MASK_CTRL, KC_BSPC, KC_DEL);
 const key_override_t override_shif_del = ko_make_basic(MOD_MASK_SHIFT, KC_BSPC, KC_DEL);
 
-const key_override_t override_ctrl_h = ko_make_basic(MOD_MASK_CTRL, KC_LEFT, KC_HOME);
-const key_override_t override_ctrl_j = ko_make_basic(MOD_MASK_CTRL, KC_DOWN, KC_PGDN);
-const key_override_t override_ctrl_k = ko_make_basic(MOD_MASK_CTRL, KC_UP, KC_PGUP);
-const key_override_t override_ctrl_l = ko_make_basic(MOD_MASK_CTRL, KC_RIGHT, KC_END);
-const key_override_t override_shif_h = ko_make_basic(MOD_MASK_SHIFT, KC_LEFT, KC_HOME);
-const key_override_t override_shif_j = ko_make_basic(MOD_MASK_SHIFT, KC_DOWN, KC_PGDN);
-const key_override_t override_shif_k = ko_make_basic(MOD_MASK_SHIFT, KC_UP, KC_PGUP);
-const key_override_t override_shif_l = ko_make_basic(MOD_MASK_SHIFT, KC_RIGHT, KC_END);
+// const key_override_t override_ctrl_h = ko_make_basic(MOD_MASK_CTRL, KC_LEFT, KC_HOME);
+// const key_override_t override_ctrl_j = ko_make_basic(MOD_MASK_CTRL, KC_DOWN, KC_PGDN);
+// const key_override_t override_ctrl_k = ko_make_basic(MOD_MASK_CTRL, KC_UP, KC_PGUP);
+// const key_override_t override_ctrl_l = ko_make_basic(MOD_MASK_CTRL, KC_RIGHT, KC_END);
+// const key_override_t override_shif_h = ko_make_basic(MOD_MASK_SHIFT, KC_LEFT, KC_HOME);
+// const key_override_t override_shif_j = ko_make_basic(MOD_MASK_SHIFT, KC_DOWN, KC_PGDN);
+// const key_override_t override_shif_k = ko_make_basic(MOD_MASK_SHIFT, KC_UP, KC_PGUP);
+// const key_override_t override_shif_l = ko_make_basic(MOD_MASK_SHIFT, KC_RIGHT, KC_END);
+
+const key_override_t override_shif_space = ko_make_basic(MOD_MASK_SHIFT, KC_SPC, KC_PGUP);
 
 const key_override_t **key_overrides = (const key_override_t *[]){
     &override_ctrl_del, &override_shif_del,
-    &override_ctrl_h, &override_ctrl_l, &override_ctrl_j, &override_ctrl_k,
-    &override_shif_h, &override_shif_l, &override_shif_j, &override_shif_k,
+    // &override_ctrl_h, &override_ctrl_l, &override_ctrl_j, &override_ctrl_k,
+    // &override_shif_h, &override_shif_l, &override_shif_j, &override_shif_k,
+    &override_shif_space,
     NULL // End of array
 };
