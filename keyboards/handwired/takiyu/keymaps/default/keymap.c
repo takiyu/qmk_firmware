@@ -80,7 +80,7 @@ const key_override_t override_shif_space = ko_make_basic(MOD_MASK_SHIFT, KC_SPC,
 
 // Alt + Space/Esc for Windows
 const key_override_t override_alt_space = ko_make_basic(MOD_MASK_ALT, KC_SPC, KC_LWIN);
-const key_override_t override_alt_esc = ko_make_basic(MOD_MASK_ALT, KC_ESC, LALT(KC_TAB));
+const key_override_t override_alt_esc = ko_make_basic(MOD_MASK_ALT, KC_ESC, RALT(KC_TAB));
 
 const key_override_t **key_overrides = (const key_override_t *[]){
     &override_ctrl_bs, &override_shif_bs,
