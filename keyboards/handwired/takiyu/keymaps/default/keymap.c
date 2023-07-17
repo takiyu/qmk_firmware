@@ -9,8 +9,6 @@ enum custom_layer {
     _3DE,
 };
 
-// TODO: Menu,Caps
-
 #define ___NG___ XXXXXXX
 #define TK_SPC1  LT(_1FN, KC_SPC)
 #define TK_SPC2  LT(_2MO, KC_SPC)
@@ -42,11 +40,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     // Mouse Layer
     [_2MO] = LAYOUT_5x8(
-        KC_ESC,   _______, _______, TK_TAB2, TK_TAB3, _______, _______, _______,    _______, _______, KC_HOME, KC_END , _______, _______, _______, _______,
-        TO(_HOM), _______, _______, _______, _______, KC_WFWD, _______,___NG___,    TK_COPY, KC_WBAK, _______, _______, TK_PAST, _______, KC_WH_U, _______,
-        TO(_1FN), _______, _______, KC_BTN3, KC_BTN2, KC_BTN1, _______,___NG___,    KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R, _______, _______, KC_WH_D,___NG___,
-        TO(_2MO), _______, _______, _______, _______, _______, _______, _______,    _______, _______, _______, _______, _______, _______, _______, _______,
-        TO(_3DE), _______, _______, _______, _______, _______,TO(_2MO),___NG___,    TK_SPC2,TO(_HOM), _______, _______, _______, _______, _______, _______
+        KC_ESC,   _______, KC_F1  , TK_TAB2, TK_TAB3, KC_F4  , KC_F5  , KC_F6  ,    KC_F7  , KC_F8  , KC_HOME, KC_END , _KC_F11, _KC_F12, XXXXXXX, KC_DEL ,
+        TO(_HOM), _______, _______, _______, _______, KC_WFWD, _______,___NG___,    TK_COPY, KC_WBAK, KC_INS , _______, TK_PAST, _______, KC_WH_U, _______,
+        TO(_1FN), _______, _______, KC_BTN2, KC_BTN3, KC_BTN1, _______,___NG___,    KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R, _______, _______, KC_WH_D,___NG___,
+        TO(_2MO), _______, _______, _______, KC_DEL , _______, _______, _______,    _______, _______, _______, _______, _______, _______, _______, _______,
+        TO(_3DE), _______, _______, _______, _______, _______,TO(_2MO),___NG___,    TK_SPC2,TO(_HOM), _______, _______, _______, KC_LEFT,KC_RIGHT, TK_PSCR
     ),
 
     // Debug Layer
