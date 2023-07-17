@@ -10,14 +10,17 @@ enum custom_layer {
 };
 
 #define ___NG___ XXXXXXX
+#define VOL_UP KC_KB_VOLUME_UP
+#define VOL_DN KC_KB_VOLUME_UP
+
 #define TK_SPC1  LT(_1FN, KC_SPC)
 #define TK_SPC2  LT(_2MO, KC_SPC)
 #define TK_TAB3  LCTL(KC_TAB)
 #define TK_TAB2  LSFT(LCTL(KC_TAB))
 #define TK_PSCR  LALT(KC_PSCR)
-#define TK_CUT   KC_CUT
-#define TK_COPY  KC_COPY
-#define TK_PAST  KC_PASTE
+#define TK_CUT   LCTL(KC_X)
+#define TK_COPY  LCTL(KC_C)
+#define TK_PAST  LCTL(KC_V)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // Home Layer
@@ -35,7 +38,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         TO(_HOM), _______, DM_REC1, _______, _______, KC_F5,   _______,___NG___,    _______, _______, KC_INS , _______, _______, DM_PLY1, KC_PGUP, _______,
         TO(_1FN), _______, DM_RSTP, _______, _______, _______, _______,___NG___,    KC_LEFT, KC_DOWN, KC_UP  ,KC_RIGHT, _______, _______, KC_PGDN,___NG___,
         TO(_2MO), _______, _______, _______, KC_DEL , _______, _______, _______,    _______, _______, _______, _______, _______, _______, _______, _______,
-        TO(_3DE), _______, _______, _______, _______, _______, TK_SPC1,___NG___,   TO(_1FN),TO(_HOM), _______, _______, _______, KC_WBAK, KC_WFWD, TK_PSCR
+        TO(_3DE), _______, _______, _______, _______, _______, TK_SPC1,___NG___,   TO(_1FN),TO(_HOM), _______, _______, _______,  VOL_DN,  VOL_UP, TK_PSCR
     ),
 
     // Mouse Layer
@@ -44,7 +47,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         TO(_HOM), _______, _______, _______, _______, KC_WFWD, _______,___NG___,    TK_COPY, KC_WBAK, KC_INS , _______, TK_PAST, _______, KC_WH_U, _______,
         TO(_1FN), _______, _______, KC_BTN2, KC_BTN3, KC_BTN1, _______,___NG___,    KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R, _______, _______, KC_WH_D,___NG___,
         TO(_2MO), _______, _______, _______, KC_DEL , _______, _______, _______,    _______, _______, _______, _______, _______, _______, _______, _______,
-        TO(_3DE), _______, _______, _______, _______, _______,TO(_2MO),___NG___,    TK_SPC2,TO(_HOM), _______, _______, _______, KC_LEFT,KC_RIGHT, TK_PSCR
+        TO(_3DE), _______, _______, _______, _______, _______,TO(_2MO),___NG___,    TK_SPC2,TO(_HOM), _______, _______, _______,  VOL_DN,  VOL_UP, TK_PSCR
     ),
 
     // Debug Layer
