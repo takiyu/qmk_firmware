@@ -17,12 +17,9 @@ enum custom_layer {
 #define TK_TAB3  LCTL(KC_TAB)
 #define TK_TAB2  LSFT(LCTL(KC_TAB))
 #define TK_PSCR  LALT(KC_PSCR)
-#define TK_CUT   LCTL(KC_X)
-#define TK_COPY  LCTL(KC_C)
-#define TK_PAST  LCTL(KC_V)
-// #define TK_CUT   KC_CUT
-// #define TK_COPY  KC_COPY
-// #define TK_PAST  KC_PASTE
+#define TK_CUT   KC_CUT
+#define TK_COPY  KC_COPY
+#define TK_PAST  KC_PASTE
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // Home Layer
