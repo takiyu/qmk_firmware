@@ -35,7 +35,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // Function Layer
     [_1FN] = LAYOUT_5x8(
         KC_ESC,   _______, KC_F1  , KC_F2  , KC_F3  , KC_F4  , KC_F5  , KC_F6  ,    KC_F7  , KC_F8  , KC_F9  , KC_F10 , KC_F11 , KC_F12 , XXXXXXX, KC_DEL ,
-        TO(_HOM), _______, DM_REC1, _______, _______, KC_F5,   _______,___NG___,    _______, _______, KC_INS , _______, _______, DM_PLY1, KC_PGUP, _______,
+        TO(_HOM), _______, DM_REC1, _______, _______, KC_LWIN, _______,___NG___,    _______, _______, KC_INS , _______, _______, DM_PLY1, KC_PGUP, _______,
         TO(_1FN), _______, DM_RSTP, _______, _______, _______, _______,___NG___,    KC_LEFT, KC_DOWN, KC_UP  ,KC_RIGHT, _______, _______, KC_PGDN,___NG___,
         TO(_2MO), _______, _______, _______, KC_DEL , _______, _______, _______,    _______, _______, _______, _______, _______, _______, _______, _______,
         TO(_3DE), _______, _______, _______, _______, _______, TK_SPC1,___NG___,   TO(_1FN),TO(_HOM), _______, _______, _______,  VOL_DN,  VOL_UP, TK_PSCR
@@ -43,9 +43,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     // Mouse Layer
     [_2MO] = LAYOUT_5x8(
-        KC_ESC,   _______, KC_F1  , TK_TAB2, TK_TAB3, KC_F4  , KC_F5  , KC_F6  ,    KC_F7  , KC_F8  , KC_HOME, KC_END , _KC_F11, _KC_F12, XXXXXXX, KC_DEL ,
-        TO(_HOM), _______, _______, _______, _______, KC_WFWD, _______,___NG___,    TK_COPY, KC_WBAK, KC_INS , _______, TK_PAST, _______, KC_WH_U, _______,
-        TO(_1FN), _______, _______, KC_BTN2, KC_BTN3, KC_BTN1, _______,___NG___,    KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R, _______, _______, KC_WH_D,___NG___,
+        KC_ESC,   _______, KC_F1  , TK_TAB2, TK_TAB3, KC_F4  , KC_F5  , KC_F6  ,    KC_F7  , KC_F8  , KC_HOME, KC_END ,  KC_F11,  KC_F12, XXXXXXX, KC_DEL ,
+        TO(_HOM), _______, DM_REC2, _______, _______, KC_WFWD, _______,___NG___,    TK_COPY, KC_WBAK, KC_INS , _______, TK_PAST, DM_PLY2, KC_WH_U, _______,
+        TO(_1FN), _______, DM_RSTP, KC_BTN2, KC_BTN3, KC_BTN1, _______,___NG___,    KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R, _______, _______, KC_WH_D,___NG___,
         TO(_2MO), _______, _______, _______, KC_DEL , _______, _______, _______,    _______, _______, _______, _______, _______, _______, _______, _______,
         TO(_3DE), _______, _______, _______, _______, _______,TO(_2MO),___NG___,    TK_SPC2,TO(_HOM), _______, _______, _______,  VOL_DN,  VOL_UP, TK_PSCR
     ),
