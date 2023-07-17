@@ -10,8 +10,8 @@ enum custom_layer {
 };
 
 #define ___NG___ XXXXXXX
-#define VOL_UP KC_KB_VOLUME_UP
-#define VOL_DN KC_KB_VOLUME_UP
+#define VOL_UP KC_VOLU
+#define VOL_DN KC_VOLD
 
 #define TK_SPC1  LT(_1FN, KC_SPC)
 #define TK_SPC2  LT(_2MO, KC_SPC)
