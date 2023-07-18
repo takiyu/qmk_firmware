@@ -44,7 +44,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // Mouse Layer
     [_2MO] = LAYOUT_5x8(
         KC_ESC,   _______, KC_F1  , TK_TAB2, TK_TAB3, KC_F4  , KC_F5  , KC_F6  ,    KC_F7  , KC_F8  , KC_HOME, KC_END ,  KC_F11,  KC_F12, XXXXXXX, KC_DEL ,
-        TO(_HOM), _______, DM_REC2, _______, _______, KC_WFWD, _______,___NG___,    TK_COPY, KC_WBAK, KC_INS , _______, TK_PAST, DM_PLY2, KC_WH_U, _______,
+        TO(_HOM), _______, DM_REC1, _______, _______, KC_WFWD, _______,___NG___,    TK_COPY, KC_WBAK, KC_INS , _______, TK_PAST, DM_PLY1, KC_WH_U, _______,
         TO(_1FN), _______, DM_RSTP, KC_BTN2, KC_BTN3, KC_BTN1, _______,___NG___,    KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R, _______, _______, KC_WH_D,___NG___,
         TO(_2MO), _______, _______, _______, KC_DEL , _______, _______, _______,    _______, _______, _______, _______, _______, _______, _______, _______,
         TO(_3DE), _______, _______, _______, _______, _______,TO(_2MO),___NG___,    TK_SPC2,TO(_HOM), _______, _______, _______,  VOL_DN,  VOL_UP, TK_PSCR
