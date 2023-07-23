@@ -83,7 +83,7 @@ const key_override_t override_1fn_shift_c = {.trigger_mods      = MOD_MASK_SHIFT
                                              .replacement       = RALT(KC_F4),
                                              .enabled           = NULL};
 
-// Alt + Space/Esc for Windows
+// Alt + Esc for Windows
 bool override_alt_esc_func(bool key_down, void *layer) {
     if (key_down) {
         register_code(KC_TAB);
