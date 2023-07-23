@@ -39,7 +39,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_ESC,   _______, KC_F1  , KC_F2  , KC_F3  , KC_F4  , KC_F5  , KC_F6  ,    KC_F7  , KC_F8  , KC_F9  , KC_F10 , KC_F11 , KC_F12 , XXXXXXX, KC_DEL ,
         TO(_HOM), _______, _______, _______, _______, KC_LWIN, _______,___NG___,    _______, _______, KC_INS , _______, _______, _______, KC_PGUP, _______,
         TO(_1FN), _______, TK_ALL , _______, _______, _______, _______,___NG___,    KC_LEFT, KC_DOWN, KC_UP  ,KC_RIGHT, _______, _______, KC_PGDN,___NG___,
-        TO(_2MO), _______, _______, _______, KC_DEL ,TK_ALTF4, _______, _______,    _______, _______, _______, _______, _______, _______, _______, _______,
+        TO(_2MO), _______, _______, _______, KC_DEL , _______, _______, _______,    _______, _______, _______, _______, _______, _______, _______, _______,
         TO(_3DE), _______, _______, _______, _______, _______, TK_SPC1,___NG___,   DF(_1FN),DF(_HOM), _______, _______, _______,  VOL_DN,  VOL_UP, TK_PSCR
     ),
 
@@ -71,36 +71,24 @@ const key_override_t override_shif_bs = ko_make_basic(MOD_MASK_SHIFT, KC_BSPC, K
 // Shift + Space -> PageUp
 const key_override_t override_shif_space = ko_make_basic(MOD_MASK_SHIFT, KC_SPC, KC_PGUP);
 
-// 1FN + Shift + C -> Alt F4
-const key_override_t override_1fn_shift_c = {.trigger_mods      = MOD_MASK_SHIFT,
-                                             .layers            = (1 << _1FN),
-                                             .suppressed_mods   = MOD_MASK_SHIFT,
-                                             .options           = ko_options_default,
-                                             .negative_mod_mask = (uint8_t) ~(0),
-                                             .custom_action     = NULL,
-                                             .context           = NULL,
-                                             .trigger           = KC_C,
-                                             .replacement       = RALT(KC_F4),
-                                             .enabled           = NULL};
-
 // Alt + Esc for Windows
-bool override_alt_esc_func(bool key_down, void *layer) {
+bool override_alt_esc_func(bool key_down, void*) {
     if (key_down) {
         register_code(KC_TAB);
         unregister_code(KC_TAB);
-        layer_on((uint8_t)(uintptr_t)layer);
+        layer_on(_1FN);
     } else {
-        layer_off((uint8_t)(uintptr_t)layer);
+        layer_off(_1FN);
     }
     return false;
 }
 const key_override_t override_alt_esc = {.trigger_mods      = MOD_MASK_ALT,
                                          .layers            = ~(1 << _1FN),
-                                         .suppressed_mods   = MOD_MASK_ALT,
+                                         .suppressed_mods   = 0,  // No supress
                                          .options           = ko_option_no_unregister_on_other_key_down,
                                          .negative_mod_mask = (uint8_t) ~(MOD_MASK_ALT),
                                          .custom_action     = override_alt_esc_func,
-                                         .context           = (void *)_1FN,
+                                         .context           = NULL,
                                          .trigger           = KC_ESC,
                                          .replacement       = KC_NO,
                                          .enabled           = NULL};
@@ -109,7 +97,6 @@ const key_override_t override_alt_esc = {.trigger_mods      = MOD_MASK_ALT,
 const key_override_t **key_overrides = (const key_override_t *[]){
     &override_ctrl_bs, &override_shif_bs,
     &override_shif_space,
-    &override_1fn_shift_c,
     &override_alt_esc,
     NULL // End of array
 };
