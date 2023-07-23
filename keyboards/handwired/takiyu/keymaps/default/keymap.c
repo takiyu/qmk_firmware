@@ -21,6 +21,7 @@ enum custom_layer {
 #define TK_CUT   LCTL(KC_X)
 #define TK_COPY  LCTL(KC_C)
 #define TK_PAST  LCTL(KC_V)
+#define TK_ALL   LCTL(KC_A)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // Home Layer
@@ -35,8 +36,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // Function Layer
     [_1FN] = LAYOUT_5x8(
         KC_ESC,   _______, KC_F1  , KC_F2  , KC_F3  , KC_F4  , KC_F5  , KC_F6  ,    KC_F7  , KC_F8  , KC_F9  , KC_F10 , KC_F11 , KC_F12 , XXXXXXX, KC_DEL ,
-        TO(_HOM), _______, DM_REC1, _______, _______, KC_LWIN, _______,___NG___,    _______, _______, KC_INS , _______, _______, DM_PLY1, KC_PGUP, _______,
-        TO(_1FN), _______, DM_RSTP, _______, _______, _______, _______,___NG___,    KC_LEFT, KC_DOWN, KC_UP  ,KC_RIGHT, _______, _______, KC_PGDN,___NG___,
+        TO(_HOM), _______, _______, _______, _______, KC_LWIN, _______,___NG___,    _______, _______, KC_INS , _______, _______, _______, KC_PGUP, _______,
+        TO(_1FN), _______, TK_ALL , _______, _______, _______, _______,___NG___,    KC_LEFT, KC_DOWN, KC_UP  ,KC_RIGHT, _______, _______, KC_PGDN,___NG___,
         TO(_2MO), _______, _______, _______, KC_DEL , _______, _______, _______,    _______, _______, _______, _______, _______, _______, _______, _______,
         TO(_3DE), _______, _______, _______, _______, _______, TK_SPC1,___NG___,   DF(_1FN),DF(_HOM), _______, _______, _______,  VOL_DN,  VOL_UP, TK_PSCR
     ),
@@ -73,9 +74,14 @@ const key_override_t override_shif_space = ko_make_basic(MOD_MASK_SHIFT, KC_SPC,
 const key_override_t override_alt_space = ko_make_basic(MOD_MASK_ALT, KC_SPC, KC_LWIN);
 const key_override_t override_alt_esc = ko_make_basic(MOD_MASK_ALT, KC_ESC, RALT(KC_TAB));
 
+// 1FN + Shift + C -> Alt F4
+const key_override_t override_1fn_shift_c = ko_make_with_layers(MOD_MASK_SHIFT, KC_C, LALT(KC_F4), _1FN);
+
+// Register overrides
 const key_override_t **key_overrides = (const key_override_t *[]){
     &override_ctrl_bs, &override_shif_bs,
     &override_shif_space,
     &override_alt_space, &override_alt_esc,
+    &override_1fn_shift_c,
     NULL // End of array
 };
