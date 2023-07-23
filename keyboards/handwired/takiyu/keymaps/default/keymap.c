@@ -71,9 +71,43 @@ const key_override_t override_shif_bs = ko_make_basic(MOD_MASK_SHIFT, KC_BSPC, K
 // Shift + Space -> PageUp
 const key_override_t override_shif_space = ko_make_basic(MOD_MASK_SHIFT, KC_SPC, KC_PGUP);
 
+// 1FN + Shift + C -> Alt F4
+const key_override_t override_1fn_shift_c = {.trigger_mods      = MOD_MASK_SHIFT,
+                                             .layers            = (1 << _1FN),
+                                             .suppressed_mods   = MOD_MASK_SHIFT,
+                                             .options           = ko_options_default,
+                                             .negative_mod_mask = (uint8_t) ~(0),
+                                             .custom_action     = NULL,
+                                             .context           = NULL,
+                                             .trigger           = KC_C,
+                                             .replacement       = RALT(KC_F4),
+                                             .enabled           = NULL};
+
+// Alt + Space/Esc for Windows
+// const key_override_t override_alt_esc = ko_make_basic(MOD_MASK_ALT, KC_ESC, RALT(KC_TAB));
+// bool override_alt_esc_start_func(bool key_down, void *layer) {
+//     if (key_down) {
+//         layer_on((uint8_t)(uintptr_t)layer);
+//     } else {
+//         layer_off((uint8_t)(uintptr_t)layer);
+//     }
+//     return false;
+// }
+// const key_override_t override_alt_esc = {.trigger_mods      = MOD_MASK_ALT,
+//                                          .layers            = ~(1 << _1FN),
+//                                          .suppressed_mods   = MOD_MASK_ALT,
+//                                          .options           = ko_option_no_unregister_on_other_key_down,
+//                                          .negative_mod_mask = (uint8_t) ~(MOD_MASK_ALT),
+//                                          .custom_action     = override_alt_esc_start_func,
+//                                          .context           = (void *)_1FN,
+//                                          .trigger           = KC_ESC,
+//                                          .replacement       = RALT(KC_TAB),
+//                                          .enabled           = NULL};
+
 // Register overrides
 const key_override_t **key_overrides = (const key_override_t *[]){
     &override_ctrl_bs, &override_shif_bs,
     &override_shif_space,
+    &override_1fn_shift_c,
     NULL // End of array
 };
