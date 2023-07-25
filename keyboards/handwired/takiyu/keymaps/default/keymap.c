@@ -38,7 +38,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_1FN] = LAYOUT_5x8(
         KC_ESC,   _______, KC_F1  , KC_F2  , KC_F3  , KC_F4  , KC_F5  , KC_F6  ,    KC_F7  , KC_F8  , KC_F9  , KC_F10 , KC_F11 , KC_F12 , XXXXXXX, KC_DEL ,
         TO(_HOM), _______, _______, _______, _______, KC_LWIN, _______,___NG___,    _______, _______, KC_INS , _______, _______, _______, KC_PGUP, _______,
-        TO(_1FN), _______, TK_ALL , _______, _______, _______, _______,___NG___,    KC_LEFT, KC_DOWN, KC_UP  ,KC_RIGHT, _______, _______, KC_PGDN,___NG___,
+        TO(_1FN), _______, TK_ALL , KC_TAB , _______, _______, _______,___NG___,    KC_LEFT, KC_DOWN, KC_UP  ,KC_RIGHT, _______, _______, KC_PGDN,___NG___,
         TO(_2MO), _______, _______, _______, KC_DEL ,TK_ALTF4, _______, _______,    _______, _______, _______, _______, _______, _______, _______, _______,
         TO(_3DE), _______, KC_SCRL, _______, _______, _______, TK_SPC1,___NG___,   DF(_1FN),DF(_HOM), _______, _______, _______,  VOL_DN,  VOL_UP, TK_PSCR
     ),
@@ -106,44 +106,27 @@ const key_override_t **key_overrides = (const key_override_t *[]){
 // --------------------------------- User Hook ---------------------------------
 bool g_takiyu_is_alt_tab = false;
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    // 1FN + Tab/Esc
-    if (IS_LAYER_ON(_1FN) && !g_takiyu_is_alt_tab && (keycode == KC_TAB || keycode == KC_ESC)) {
-        if (record->event.pressed) {
-            // Press
-            register_code(KC_LALT);
-            register_code(KC_TAB);
-            unregister_code(KC_TAB);
-            g_takiyu_is_alt_tab = true;
-        }
+    const bool is_pressed = record->event.pressed;
+
+    // 1FN + Tab/Esc: Start
+    if (IS_LAYER_ON(_1FN) && (keycode == KC_TAB || keycode == KC_ESC) && is_pressed) {
+        g_takiyu_is_alt_tab = true;
+        register_code(KC_LALT);
+        register_code(KC_TAB);
+        unregister_code(KC_TAB);
         return false;  // Skip all further processing of this key
     }
-    if (IS_LAYER_OFF(_1FN) && g_takiyu_is_alt_tab) {
-        if (!record->event.pressed) {
-            // Release
-            unregister_code(KC_LALT);
+    // 1FN + Tab/Esc: End
+    if (g_takiyu_is_alt_tab) {
+        if (!IS_LAYER_ON(_1FN) || !(keycode == KC_TAB || keycode == KC_ESC ||
+                                    keycode == KC_UP || keycode == KC_DOWN ||
+                                    keycode == KC_LEFT || keycode == KC_RIGHT)) {
             g_takiyu_is_alt_tab = false;
+            unregister_code(KC_LALT);
+            layer_clear();
             return false;  // Skip all further processing of this key
         }
     }
-
-//     switch (keycode) {
-//         case KC_TAB:
-// //         case FOO:
-// //             if (record->event.pressed) {
-// //               // Do something when pressed
-// //             } else {
-// //               // Do something else when release
-// //             }
-// //             return false; // Skip all further processing of this key
-//         case KC_ENTER:
-//             // Play a tone when enter is pressed
-//             if (record->event.pressed) {
-// //               PLAY_SONG(tone_qwerty);
-//             }
-//             return true; // Let QMK send the enter press/release events
-//         default:
-//             return true; // Process all other keycodes normally
-//     }
 
     return true;
 }
