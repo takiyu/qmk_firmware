@@ -112,9 +112,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     // 1FN + Tab/Esc: Start
     if (IS_LAYER_ON(_1FN) && (keycode == KC_TAB || keycode == KC_ESC) && is_pressed) {
         g_takiyu_is_alt_tab = true;
+        // Push alt
         register_code(KC_LALT);
-        register_code(KC_TAB);
-        unregister_code(KC_TAB);
+        // Alt+Tab, Alt+Left
+        tap_code(KC_TAB);
+        tap_code(KC_LEFT);
         return false;  // Skip all further processing of this key
     }
     // 1FN + Tab/Esc: End
@@ -123,8 +125,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                                     keycode == KC_UP || keycode == KC_DOWN ||
                                     keycode == KC_LEFT || keycode == KC_RIGHT)) {
             g_takiyu_is_alt_tab = false;
+            // Release alt
             unregister_code(KC_LALT);
+            // Clear status
             layer_clear();
+            clear_keyboard();
             return false;  // Skip all further processing of this key
         }
     }
