@@ -67,40 +67,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // Shift + Space -> PageUp (TODO)
 const key_override_t override_shif_space = ko_make_basic(MOD_MASK_SHIFT, KC_SPC, KC_PGUP);
 
-// Alt + 1/2/... -> Shift + 1/2/...
+// Alt + 1/2/.../6 -> Shift + 1/2/.../6
 const key_override_t override_alt_1 = ko_make_basic(MOD_MASK_ALT, KC_1, JP_EXLM);
 const key_override_t override_alt_2 = ko_make_basic(MOD_MASK_ALT, KC_2, JP_DQUO);
 const key_override_t override_alt_3 = ko_make_basic(MOD_MASK_ALT, KC_3, JP_HASH);
 const key_override_t override_alt_4 = ko_make_basic(MOD_MASK_ALT, KC_4, JP_DLR);
 const key_override_t override_alt_5 = ko_make_basic(MOD_MASK_ALT, KC_5, JP_PERC);
 const key_override_t override_alt_6 = ko_make_basic(MOD_MASK_ALT, KC_6, JP_AMPR);
-const key_override_t override_alt_7 = ko_make_basic(MOD_MASK_ALT, KC_7, JP_QUOT);
-// const key_override_t override_alt_8 = ko_make_basic(MOD_MASK_ALT, KC_8, JP_LPRN);
-// const key_override_t override_alt_9 = ko_make_basic(MOD_MASK_ALT, KC_9, JP_RPRN);
-// const key_override_t override_alt_10 = ko_make_basic(MOD_MASK_ALT, KC_0, JP_TILD);
-// const key_override_t override_alt_11 = ko_make_basic(MOD_MASK_ALT, JP_MINS, JP_EQL);
-// const key_override_t override_alt_12 = ko_make_basic(MOD_MASK_ALT, JP_CIRC, JP_TILD);
-// const key_override_t override_alt_13 = ko_make_basic(MOD_MASK_ALT, JP_YEN, JP_PIPE);
 const key_override_t override_alt_bs = ko_make_basic(MOD_MASK_ALT, KC_BSPC, KC_DEL);
-
-#define USE_OVERRIDE_SHIFT_CTRL_BS 0
-#if USE_OVERRIDE_SHIFT_CTRL_BS
-// Mod + BS -> Delete keys
-const key_override_t override_ctrl_bs = ko_make_basic(MOD_MASK_CTRL, KC_BSPC, KC_DEL);
-const key_override_t override_shift_bs = ko_make_basic(MOD_MASK_SHIFT, KC_BSPC, KC_DEL);
-#endif
 
 // Register overrides
 const key_override_t **key_overrides = (const key_override_t *[]){
     &override_shif_space,
     &override_alt_1, &override_alt_2, &override_alt_3, &override_alt_4,
-    &override_alt_5, &override_alt_6, &override_alt_7,
-    // &override_alt_8, &override_alt_9, &override_alt_10, &override_alt_11,
-    // &override_alt_12, &override_alt_13,
+    &override_alt_5, &override_alt_6,
     &override_alt_bs,
-#if USE_OVERRIDE_SHIFT_CTRL_BS
-    &override_ctrl_bs, &override_shift_bs,
-#endif
     NULL // End of array
 };
 
