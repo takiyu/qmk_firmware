@@ -77,10 +77,10 @@ const key_override_t override_alt_6 = ko_make_basic(MOD_MASK_ALT, KC_6, JP_AMPR)
 const key_override_t override_alt_7 = ko_make_basic(MOD_MASK_ALT, KC_7, JP_QUOT);
 // const key_override_t override_alt_8 = ko_make_basic(MOD_MASK_ALT, KC_8, JP_LPRN);
 // const key_override_t override_alt_9 = ko_make_basic(MOD_MASK_ALT, KC_9, JP_RPRN);
-const key_override_t override_alt_10 = ko_make_basic(MOD_MASK_ALT, KC_0, JP_TILD);
-const key_override_t override_alt_11 = ko_make_basic(MOD_MASK_ALT, JP_MINS, JP_EQL);
-const key_override_t override_alt_12 = ko_make_basic(MOD_MASK_ALT, JP_CIRC, JP_TILD);
-const key_override_t override_alt_13 = ko_make_basic(MOD_MASK_ALT, JP_YEN, JP_PIPE);
+// const key_override_t override_alt_10 = ko_make_basic(MOD_MASK_ALT, KC_0, JP_TILD);
+// const key_override_t override_alt_11 = ko_make_basic(MOD_MASK_ALT, JP_MINS, JP_EQL);
+// const key_override_t override_alt_12 = ko_make_basic(MOD_MASK_ALT, JP_CIRC, JP_TILD);
+// const key_override_t override_alt_13 = ko_make_basic(MOD_MASK_ALT, JP_YEN, JP_PIPE);
 const key_override_t override_alt_bs = ko_make_basic(MOD_MASK_ALT, KC_BSPC, KC_DEL);
 
 #define USE_OVERRIDE_SHIFT_CTRL_BS 0
@@ -95,9 +95,9 @@ const key_override_t **key_overrides = (const key_override_t *[]){
     &override_shif_space,
     &override_alt_1, &override_alt_2, &override_alt_3, &override_alt_4,
     &override_alt_5, &override_alt_6, &override_alt_7,
-    // &override_alt_8, &override_alt_9,
-    &override_alt_10, &override_alt_11, &override_alt_12,
-    &override_alt_13, &override_alt_bs,
+    // &override_alt_8, &override_alt_9, &override_alt_10, &override_alt_11,
+    // &override_alt_12, &override_alt_13,
+    &override_alt_bs,
 #if USE_OVERRIDE_SHIFT_CTRL_BS
     &override_ctrl_bs, &override_shift_bs,
 #endif
