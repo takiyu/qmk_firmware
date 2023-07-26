@@ -96,7 +96,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     if (is_win) {
         // 1FN + Tab/Esc: Start
         const bool is_r_alt = (get_mods() & MOD_BIT(KC_RALT));
-        if (is_r_alt && (keycode == KC_TAB || keycode == KC_S) && is_pressed) {
+        const bool is_fn_on = IS_LAYER_ON(_1FN);
+        if ((is_fn_on || is_r_alt) &&
+            (keycode == KC_TAB || keycode == KC_S) && is_pressed) {
             g_takiyu_is_alt_tab = true;
             register_code(KC_RALT);  // Alt: Push
             tap_code(KC_TAB);        // Alt+Tab
@@ -106,9 +108,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         }
         // 1FN + Tab/Esc: End
         if (g_takiyu_is_alt_tab) {
-            if (!is_r_alt || !(keycode == KC_TAB || keycode == KC_S ||
-                               keycode == KC_UP || keycode == KC_DOWN ||
-                               keycode == KC_LEFT || keycode == KC_RIGHT)) {
+            if (!(keycode == KC_TAB || keycode == KC_S ||
+                  keycode == KC_UP || keycode == KC_DOWN ||
+                  keycode == KC_LEFT || keycode == KC_RIGHT)) {
                 g_takiyu_is_alt_tab = false;
                 unregister_code(KC_RALT);  // Alt: Release
                 layer_clear();             // Clear status
