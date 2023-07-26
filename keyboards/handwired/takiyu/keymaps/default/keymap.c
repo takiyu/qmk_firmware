@@ -93,19 +93,20 @@ void takiyu_wait(uint16_t ms) {
         wait_ms(1);
     }
 }
-bool g_takiyu_is_alt_tab = false;
+bool g_takiyu_is_smart_alt_tab = false;
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     const os_variant_t os_type = detected_host_os();
     const bool is_win = (os_type == OS_WINDOWS || os_type == OS_UNSURE);
     const bool is_pressed = record->event.pressed;
 
+    // Smart Alt-Tab
     if (is_win) {
         // 1FN/RALT + Tab/S: Start
         const bool is_r_alt = (get_mods() & MOD_BIT(KC_RALT));
         const bool is_fn_on = IS_LAYER_ON(_1FN);
         if ((is_fn_on || is_r_alt) &&
             (keycode == KC_TAB || keycode == KC_S) && is_pressed) {
-            g_takiyu_is_alt_tab = true;
+            g_takiyu_is_smart_alt_tab = true;
             register_code(KC_RALT);  // Alt: Push
             tap_code(KC_TAB);        // Alt+Tab
             takiyu_wait(100);
@@ -114,11 +115,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             return false;  // Skip all further processing of this key
         }
         // 1FN/RALT + Tab/S: End
-        if (g_takiyu_is_alt_tab) {
+        if (g_takiyu_is_smart_alt_tab) {
             if (!(keycode == KC_TAB || keycode == KC_S ||
                   keycode == KC_UP || keycode == KC_DOWN ||
                   keycode == KC_LEFT || keycode == KC_RIGHT)) {
-                g_takiyu_is_alt_tab = false;
+                g_takiyu_is_smart_alt_tab = false;
                 unregister_code(KC_RALT);  // Alt: Release
                 layer_clear();             // Clear status
                 clear_keyboard();
