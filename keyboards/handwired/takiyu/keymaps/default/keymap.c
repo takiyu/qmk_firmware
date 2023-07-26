@@ -94,7 +94,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     const bool is_pressed = record->event.pressed;
 
     if (is_win) {
-        // 1FN + Tab/Esc: Start
+        // 1FN/RALT + Tab/S: Start
         const bool is_r_alt = (get_mods() & MOD_BIT(KC_RALT));
         const bool is_fn_on = IS_LAYER_ON(_1FN);
         if ((is_fn_on || is_r_alt) &&
@@ -106,7 +106,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             layer_on(_1FN);          // 1FN: ON
             return false;  // Skip all further processing of this key
         }
-        // 1FN + Tab/Esc: End
+        // 1FN/RALT + Tab/S: End
         if (g_takiyu_is_alt_tab) {
             if (!(keycode == KC_TAB || keycode == KC_S ||
                   keycode == KC_UP || keycode == KC_DOWN ||
