@@ -87,6 +87,11 @@ const key_override_t **key_overrides = (const key_override_t *[]){
 };
 
 // --------------------------------- User Hook ---------------------------------
+void takiyu_wait(uint16_t ms) {
+    for (uint16_t i = 0; i < ms; i++) {
+        wait_ms(1);
+    }
+}
 bool g_takiyu_is_alt_tab = false;
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     const os_variant_t os_type = detected_host_os();
@@ -102,6 +107,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             g_takiyu_is_alt_tab = true;
             register_code(KC_RALT);  // Alt: Push
             tap_code(KC_TAB);        // Alt+Tab
+            takiyu_wait(100);
             tap_code(KC_LEFT);       // Left
             layer_on(_1FN);          // 1FN: ON
             return false;  // Skip all further processing of this key
@@ -116,6 +122,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 layer_clear();             // Clear status
                 clear_keyboard();
                 if (keycode == KC_LWIN) {
+                    takiyu_wait(100);
                     tap_code(KC_LWIN);  // Win
                 }
                 return false;  // Skip all further processing of this key
