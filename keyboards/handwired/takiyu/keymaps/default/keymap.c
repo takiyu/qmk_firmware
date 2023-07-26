@@ -115,6 +115,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 unregister_code(KC_RALT);  // Alt: Release
                 layer_clear();             // Clear status
                 clear_keyboard();
+                if (keycode == KC_LWIN) {
+                    tap_code(KC_LWIN);  // Win
+                }
                 return false;  // Skip all further processing of this key
             }
         }
