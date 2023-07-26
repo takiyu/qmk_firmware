@@ -24,6 +24,7 @@ enum custom_layer {
 #define TK_PAST  LCTL(KC_V)
 #define TK_ALL   LCTL(KC_A)
 #define TK_ALTF4 LALT(KC_F4)
+#define TK_WIN_E LWIN(KC_E)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // Home Layer
@@ -38,7 +39,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // Function Layer
     [_1FN] = LAYOUT_5x8(
         KC_ESC,   _______, KC_F1  , KC_F2  , KC_F3  , KC_F4  , KC_F5  , KC_F6  ,    KC_F7  , KC_F8  , KC_F9  , KC_F10 , KC_F11 , KC_F12 , XXXXXXX, KC_DEL ,
-        TO(_HOM), _______, _______, _______, _______, KC_LWIN, _______,___NG___,    TK_COPY, _______, _______, _______, TK_PAST, _______, KC_PGUP, _______,
+        TO(_HOM), _______, _______, _______,TK_WIN_E, KC_LWIN, _______,___NG___,    TK_COPY, _______, _______, _______, TK_PAST, _______, KC_PGUP, _______,
         TO(_1FN), _______, TK_ALL , _______, _______, _______, _______,___NG___,    KC_LEFT, KC_DOWN, KC_UP  ,KC_RIGHT, _______, _______, KC_PGDN,___NG___,
         TO(_2MO), _______, _______, _______, KC_DEL ,TK_ALTF4, _______, _______,    _______, _______, _______, _______, _______, _______, _______, _______,
         TO(_3DE), _______, KC_SCRL, _______, _______, _______, TK_SPC1,___NG___,   DF(_1FN),DF(_HOM), _______, _______, _______,  VOL_DN,  VOL_UP, TK_PSCR
