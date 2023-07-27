@@ -135,14 +135,18 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     // [Launch Blender]: 1FN + B
     if (is_1fn_on && (keycode == KC_B) && is_pressed) {
         if (is_win) {
-            tap_code(KC_LWIN);            // Win
+            tap_code(KC_LWIN);         // Win
+            takiyu_wait(100);
+            SEND_STRING("blender\n");  // Launch Blender
+            takiyu_wait(200);
+            tap_code(KC_ENT);          // Enter
         } else {
             register_code(KC_RALT);    // RAlt: Push
             tap_code(KC_R);            // RAlt+R
             unregister_code(KC_RALT);  // RAlt: Release
+            takiyu_wait(100);
+            SEND_STRING("blender\n");  // Launch Blender
         }
-        takiyu_wait(100);
-        SEND_STRING("blender\n");  // Launch Blender
         return false;
     }
 
