@@ -137,7 +137,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         if (is_win) {
             tap_code(KC_LWIN);         // Win
             takiyu_wait(100);
-            SEND_STRING("blender\n");  // Launch Blender
+            SEND_STRING("blender");    // Launch Blender
             takiyu_wait(200);
             tap_code(KC_ENT);          // Enter
         } else {
