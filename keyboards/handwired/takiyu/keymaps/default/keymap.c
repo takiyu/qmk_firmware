@@ -98,13 +98,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     const os_variant_t os_type = detected_host_os();
     const bool is_win = (os_type == OS_WINDOWS || os_type == OS_UNSURE);
     const bool is_pressed = record->event.pressed;
+    const bool is_1fn_on = IS_LAYER_ON(_1FN);
 
-    // Smart Alt-Tab
+    // [Smart Alt-Tab]: 1FN/RALT + Tab/S
     if (is_win) {
-        // 1FN/RALT + Tab/S: Start
         const bool is_r_alt = (get_mods() & MOD_BIT(KC_RALT));
-        const bool is_fn_on = IS_LAYER_ON(_1FN);
-        if ((is_fn_on || is_r_alt) &&
+        // Start
+        if ((is_1fn_on || is_r_alt) &&
             (keycode == KC_TAB || keycode == KC_S) && is_pressed) {
             g_takiyu_is_smart_alt_tab = true;
             register_code(KC_RALT);  // Alt: Push
@@ -114,7 +114,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             layer_on(_1FN);          // 1FN: ON
             return false;  // Skip all further processing of this key
         }
-        // 1FN/RALT + Tab/S: End
+        // End
         if (g_takiyu_is_smart_alt_tab) {
             if (!(keycode == KC_TAB || keycode == KC_S ||
                   keycode == KC_UP || keycode == KC_DOWN ||
@@ -130,6 +130,20 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 return false;  // Skip all further processing of this key
             }
         }
+    }
+
+    // [Launch Blender]: 1FN + B
+    if (is_1fn_on && (keycode == KC_B) && is_pressed) {
+        if (is_win) {
+            tap_code(KC_LWIN);            // Win
+        } else {
+            register_code(KC_RALT);    // RAlt: Push
+            tap_code(KC_R);            // RAlt+R
+            unregister_code(KC_RALT);  // RAlt: Release
+        }
+        takiyu_wait(100);
+        SEND_STRING("blender\n");  // Launch Blender
+        return false;
     }
 
     return true;
