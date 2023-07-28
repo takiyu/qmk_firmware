@@ -17,12 +17,11 @@ COMBO_ENABLE = yes
 AUTO_SHIFT_ENABLE = yes
 AUTOCORRECT_ENABLE = yes
 
-BOOTMAGIC_ENABLE = no       # Bootmagic Lite
 
 # Disables
+BOOTMAGIC_ENABLE = no       # Bootmagic Lite
 CONSOLE_ENABLE = no         # Console for debug
 COMMAND_ENABLE = no         # Commands for debug and configuration
 NKRO_ENABLE = no            # N-Key Rollover
 GRAVE_ESC_ENABLE = no
 MAGIC_ENABLE = no
-
