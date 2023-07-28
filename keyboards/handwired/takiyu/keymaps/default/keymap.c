@@ -145,12 +145,16 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     // [Launch Blender]: 1FN + B
     if (is_1fn_on && (keycode == KC_B) && is_pressed) {
         if (is_win) {
+            tap_code(KC_ESC);          // Esc
+            takiyu_wait(100);
             tap_code(KC_LWIN);         // Win
             takiyu_wait(100);
             SEND_STRING("blender");    // Launch Blender
             takiyu_wait(200);
             tap_code(KC_ENT);          // Enter
         } else {
+            tap_code(KC_ESC);          // Esc
+            takiyu_wait(100);
             register_code(KC_RALT);    // RAlt: Push
             tap_code(KC_R);            // RAlt+R
             unregister_code(KC_RALT);  // RAlt: Release
