@@ -40,8 +40,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_1FN] = LAYOUT_5x8(
         KC_ESC,   _______, KC_F1  , KC_F2  , KC_F3  , KC_F4  , KC_F5  , KC_F6  ,    KC_F7  , KC_F8  , KC_F9  , KC_F10 , KC_F11 , KC_F12 , XXXXXXX, KC_DEL ,
         TO(_HOM), _______, _______, _______,TK_WIN_E, KC_LWIN, _______,___NG___,    TK_COPY, _______, _______, _______, TK_PAST, _______, KC_PGUP, _______,
-        MO(_1FN), _______, TK_ALL , _______, _______, _______, _______,___NG___,    KC_LEFT, KC_DOWN, KC_UP  ,KC_RIGHT, _______, _______, KC_PGDN,___NG___,
-        MO(_2MO), _______, _______, _______, KC_DEL ,TK_ALTF4, _______, _______,    _______, _______, _______, _______, _______, _______, _______, _______,
+        MO(_1FN), _______, TK_ALL , _______, KC_DEL , _______, _______,___NG___,    KC_LEFT, KC_DOWN, KC_UP  ,KC_RIGHT, _______, _______, KC_PGDN,___NG___,
+        MO(_2MO), _______, _______, _______, TK_CUT ,TK_ALTF4, _______, _______,    _______, _______, _______, _______, _______, _______, _______, _______,
         MO(_3DE), _______, KC_SCRL, _______, _______, _______, TK_SPC1,___NG___,   DF(_1FN),DF(_HOM), _______, _______, _______,  VOL_DN,  VOL_UP, TK_PSCR
     ),
 
@@ -50,7 +50,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_ESC,   _______, KC_F1  , TK_TAB2, TK_TAB3, KC_F4  , KC_F5  , KC_F6  ,    KC_F7  , KC_F8  , KC_HOME, KC_END ,  KC_F11,  KC_F12, XXXXXXX, KC_DEL ,
         TO(_HOM), _______, DM_REC1, _______, _______, KC_WFWD, _______,___NG___,    TK_COPY, KC_WBAK, _______, _______, TK_PAST, DM_PLY1, KC_WH_U, _______,
         MO(_1FN), _______, DM_RSTP, KC_BTN2, KC_BTN3, KC_BTN1, _______,___NG___,    KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R, _______, _______, KC_WH_D,___NG___,
-        MO(_2MO), _______, _______, _______, KC_DEL , _______, _______, _______,    _______, _______, _______, _______, _______, _______, _______, _______,
+        MO(_2MO), _______, _______, _______, TK_CUT , _______, _______, _______,    _______, _______, _______, _______, _______, _______, _______, _______,
         MO(_3DE), _______, KC_SCRL, _______, _______, _______,DF(_2MO),___NG___,    TK_SPC2,DF(_HOM), _______, _______, _______,  VOL_DN,  VOL_UP, TK_PSCR
     ),
 
