@@ -88,6 +88,15 @@ const key_override_t **key_overrides = (const key_override_t *[]){
     NULL // End of array
 };
 
+// ----------------------------------- Combos ----------------------------------
+// Shift + A -> Shift + Ctrl
+const uint16_t PROGMEM combo_shift_a[] = {KC_A, KC_LSFT, COMBO_END};
+
+// Register combos
+combo_t key_combos[] = {
+    COMBO(combo_shift_a, LCTL(KC_LSFT)),
+};
+
 // --------------------------------- User Hook ---------------------------------
 void takiyu_wait(uint16_t ms) {
     for (uint16_t i = 0; i < ms; i++) {
