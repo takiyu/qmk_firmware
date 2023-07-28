@@ -15,10 +15,13 @@
 /* Enables This makes it easier for fast typists to use dual-function keys */
 #define PERMISSIVE_HOLD
 
-
 // WS2812 RGB LED strip input and number of LEDs
 #define RGBLED_NUM 12
 
-
 // Connect USB to right side
 #define MASTER_RIGHT
+
+// Auto Shift
+#define AUTO_SHIFT_TIMEOUT 200
+#define NO_AUTO_SHIFT_ALPHA
+#define NO_AUTO_SHIFT_SPECIAL
