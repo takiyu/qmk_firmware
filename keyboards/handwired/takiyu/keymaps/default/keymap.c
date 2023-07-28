@@ -119,8 +119,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             g_takiyu_is_smart_alt_tab = true;
             register_code(KC_RALT);  // Alt: Push
             tap_code(KC_TAB);        // Alt+Tab
-            takiyu_wait(100);
-            tap_code(KC_LEFT);       // Left
+            // takiyu_wait(100);
+            // tap_code(KC_LEFT);       // Left
             layer_on(_1FN);          // 1FN: ON
             return false;  // Skip all further processing of this key
         }
