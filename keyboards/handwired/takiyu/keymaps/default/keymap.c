@@ -66,8 +66,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 // ------------------------------- Key overrides -------------------------------
 // Shift + Space -> PageUp
-const key_override_t override_shift_space1 = ko_make_with_layers_and_negmods(MOD_MASK_SHIFT, TK_SPC1, KC_PGUP, (~0), MOD_MASK_ALT);
-const key_override_t override_shift_space2 = ko_make_with_layers_and_negmods(MOD_MASK_SHIFT, TK_SPC2, KC_PGUP, (~0), MOD_MASK_ALT);
+const key_override_t override_shift_space1 =
+    ko_make_with_layers_and_negmods(MOD_MASK_SHIFT, TK_SPC1, KC_PGUP, (~0), MOD_MASK_ALT);
+const key_override_t override_shift_space2 =
+    ko_make_with_layers_and_negmods(MOD_MASK_SHIFT, TK_SPC2, KC_PGUP, (~0), MOD_MASK_ALT);
 
 // Alt + 1/2/.../6 -> Shift + 1/2/.../6
 const key_override_t override_alt_1 = ko_make_basic(MOD_MASK_ALT, KC_1, JP_EXLM);
