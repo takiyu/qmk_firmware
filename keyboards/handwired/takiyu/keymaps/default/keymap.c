@@ -106,6 +106,76 @@ combo_t key_combos[] = {
 };
 
 // -----------------------------------------------------------------------------
+// --------------------------------- Auto Shift --------------------------------
+// -----------------------------------------------------------------------------
+bool get_custom_auto_shifted_key(uint16_t keycode, keyrecord_t *record) {
+    // No auto shift override with an actual shift key
+    const bool is_l_shift = (get_mods() & MOD_BIT(KC_LSFT));
+    if (is_l_shift) {
+        return false;
+    }
+
+    switch (keycode) {
+        case KC_1 ... KC_6:
+        case KC_A:
+        case KC_D:
+        case KC_X:
+        case KC_P:
+        case KC_Y:
+            return true;
+        default:
+            return false;
+    }
+}
+
+void autoshift_press_user(uint16_t keycode, bool shifted, keyrecord_t *record) {
+    switch (keycode) {
+        case KC_A:
+            register_code16((!shifted) ? KC_A : TK_ALL);
+            break;
+        case KC_D:
+            register_code16((!shifted) ? KC_D : KC_DEL);
+            break;
+        case KC_X:
+            register_code16((!shifted) ? KC_X : TK_CUT);
+            break;
+        case KC_P:
+            register_code16((!shifted) ? KC_P : TK_PAST);
+            break;
+        case KC_Y:
+            register_code16((!shifted) ? KC_Y : TK_COPY);
+            break;
+        default:
+            if (shifted) {
+                add_weak_mods(MOD_BIT(KC_LSFT));
+            }
+            register_code16((IS_RETRO(keycode)) ? keycode & 0xFF : keycode);
+    }
+}
+
+void autoshift_release_user(uint16_t keycode, bool shifted, keyrecord_t *record) {
+    switch (keycode) {
+        case KC_A:
+            unregister_code16((!shifted) ? KC_A : TK_ALL);
+            break;
+        case KC_D:
+            unregister_code16((!shifted) ? KC_D : KC_DEL);
+            break;
+        case KC_X:
+            unregister_code16((!shifted) ? KC_X : TK_CUT);
+            break;
+        case KC_P:
+            unregister_code16((!shifted) ? KC_P : TK_PAST);
+            break;
+        case KC_Y:
+            unregister_code16((!shifted) ? KC_Y : TK_COPY);
+            break;
+        default:
+            unregister_code16((IS_RETRO(keycode)) ? keycode & 0xFF : keycode);
+    }
+}
+
+// -----------------------------------------------------------------------------
 // --------------------------------- User Hook ---------------------------------
 // -----------------------------------------------------------------------------
 void takiyu_wait(uint16_t ms) {
