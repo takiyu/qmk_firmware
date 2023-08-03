@@ -61,7 +61,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_ESC,   _______, KC_F1  , TK_TAB2, TK_TAB3, KC_F4  , KC_F5  , KC_F6  ,    KC_F7  , KC_F8  , KC_HOME, KC_END ,  KC_F11,  KC_F12, XXXXXXX, KC_DEL ,
         TO(_HOM), _______, DM_REC1, _______, _______, KC_WFWD, _______,___NG___,    TK_COPY, KC_WBAK, _______, _______, TK_PAST, DM_PLY1, KC_WH_U, _______,
         MO(_1FN), _______, DM_RSTP, KC_BTN2, KC_BTN3, KC_BTN1, _______,___NG___,    KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R, _______, _______, KC_WH_D,___NG___,
-        MO(_2MO), _______, _______, _______, TK_CUT , _______, _______, _______,    _______, _______, _______, _______, _______, _______, _______, _______,
+        MO(_2MO), _______, _______, _______, TK_CUT , TK_COPY, TK_PAST, _______,    _______, _______, _______, _______, _______, _______, _______, _______,
         MO(_3DE), _______, KC_SCRL, _______, _______, _______,DF(_2MO),___NG___,    TK_SPC2,DF(_HOM), _______, _______, _______,  VOL_DN,  VOL_UP, TK_PSCR
     ),
 
@@ -104,76 +104,6 @@ const uint16_t PROGMEM combo_shift_a[] = {KC_A, KC_LSFT, COMBO_END};
 combo_t key_combos[] = {
     COMBO(combo_shift_a, LCTL(KC_LSFT)),
 };
-
-// -----------------------------------------------------------------------------
-// --------------------------------- Auto Shift --------------------------------
-// -----------------------------------------------------------------------------
-bool get_custom_auto_shifted_key(uint16_t keycode, keyrecord_t *record) {
-    // No auto shift override with an actual shift key
-    const bool is_l_shift = (get_mods() & MOD_BIT(KC_LSFT));
-    if (is_l_shift) {
-        return false;
-    }
-
-    switch (keycode) {
-        case KC_1 ... KC_6:
-        case KC_A:
-        case KC_D:
-        case KC_X:
-        case KC_P:
-        case KC_Y:
-            return true;
-        default:
-            return false;
-    }
-}
-
-void autoshift_press_user(uint16_t keycode, bool shifted, keyrecord_t *record) {
-    switch (keycode) {
-        case KC_A:
-            register_code16((!shifted) ? KC_A : TK_ALL);
-            break;
-        case KC_D:
-            register_code16((!shifted) ? KC_D : KC_DEL);
-            break;
-        case KC_X:
-            register_code16((!shifted) ? KC_X : TK_CUT);
-            break;
-        case KC_P:
-            register_code16((!shifted) ? KC_P : TK_PAST);
-            break;
-        case KC_Y:
-            register_code16((!shifted) ? KC_Y : TK_COPY);
-            break;
-        default:
-            if (shifted) {
-                add_weak_mods(MOD_BIT(KC_LSFT));
-            }
-            register_code16((IS_RETRO(keycode)) ? keycode & 0xFF : keycode);
-    }
-}
-
-void autoshift_release_user(uint16_t keycode, bool shifted, keyrecord_t *record) {
-    switch (keycode) {
-        case KC_A:
-            unregister_code16((!shifted) ? KC_A : TK_ALL);
-            break;
-        case KC_D:
-            unregister_code16((!shifted) ? KC_D : KC_DEL);
-            break;
-        case KC_X:
-            unregister_code16((!shifted) ? KC_X : TK_CUT);
-            break;
-        case KC_P:
-            unregister_code16((!shifted) ? KC_P : TK_PAST);
-            break;
-        case KC_Y:
-            unregister_code16((!shifted) ? KC_Y : TK_COPY);
-            break;
-        default:
-            unregister_code16((IS_RETRO(keycode)) ? keycode & 0xFF : keycode);
-    }
-}
 
 // -----------------------------------------------------------------------------
 // --------------------------------- User Hook ---------------------------------
