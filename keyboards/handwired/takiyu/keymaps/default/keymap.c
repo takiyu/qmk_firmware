@@ -87,9 +87,20 @@ const key_override_t override_shift_space2 =
 // Alt + Bs -> Delete
 const key_override_t override_alt_bs = ko_make_basic(MOD_MASK_ALT, KC_BSPC, KC_DEL);
 
+// Alt + 1/2/.../6 -> Shift + 1/2/.../6
+const key_override_t override_alt_1 = ko_make_basic(MOD_MASK_ALT, KC_1, JP_EXLM);
+const key_override_t override_alt_2 = ko_make_basic(MOD_MASK_ALT, KC_2, JP_DQUO);
+const key_override_t override_alt_3 = ko_make_basic(MOD_MASK_ALT, KC_3, JP_HASH);
+const key_override_t override_alt_4 = ko_make_basic(MOD_MASK_ALT, KC_4, JP_DLR);
+const key_override_t override_alt_5 = ko_make_basic(MOD_MASK_ALT, KC_5, JP_PERC);
+const key_override_t override_alt_6 = ko_make_basic(MOD_MASK_ALT, KC_6, JP_AMPR);
+const key_override_t override_alt_bs = ko_make_basic(MOD_MASK_ALT, KC_BSPC, KC_DEL);
+
 // Register overrides
 const key_override_t **key_overrides = (const key_override_t *[]){
     &override_shift_space1, &override_shift_space2,
+    &override_alt_1, &override_alt_2, &override_alt_3, &override_alt_4,
+    &override_alt_5, &override_alt_6,
     &override_alt_bs,
     NULL // End of array
 };
