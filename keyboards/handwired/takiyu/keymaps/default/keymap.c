@@ -84,6 +84,10 @@ const key_override_t override_shift_space1 =
 const key_override_t override_shift_space2 =
     ko_make_with_layers_and_negmods(MOD_MASK_SHIFT, TK_SPC2, KC_PGUP, (~0), MOD_MASK_ALT);
 
+// Ctrl + Space -> ZKHK
+const key_override_t override_ctrl_space1 = ko_make_basic(MOD_MASK_CTRL, TK_SPC1, JP_ZKHK);
+const key_override_t override_ctrl_space2 = ko_make_basic(MOD_MASK_CTRL, TK_SPC2, JP_ZKHK);
+
 // Alt + Bs -> Delete
 const key_override_t override_alt_bs = ko_make_basic(MOD_MASK_ALT, KC_BSPC, KC_DEL);
 
@@ -94,11 +98,11 @@ const key_override_t override_alt_3 = ko_make_basic(MOD_MASK_ALT, KC_3, JP_HASH)
 const key_override_t override_alt_4 = ko_make_basic(MOD_MASK_ALT, KC_4, JP_DLR);
 const key_override_t override_alt_5 = ko_make_basic(MOD_MASK_ALT, KC_5, JP_PERC);
 const key_override_t override_alt_6 = ko_make_basic(MOD_MASK_ALT, KC_6, JP_AMPR);
-const key_override_t override_alt_bs = ko_make_basic(MOD_MASK_ALT, KC_BSPC, KC_DEL);
 
 // Register overrides
 const key_override_t **key_overrides = (const key_override_t *[]){
     &override_shift_space1, &override_shift_space2,
+    &override_ctrl_space1, &override_ctrl_space2,
     &override_alt_1, &override_alt_2, &override_alt_3, &override_alt_4,
     &override_alt_5, &override_alt_6,
     &override_alt_bs,
