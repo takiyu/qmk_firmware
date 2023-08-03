@@ -245,7 +245,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     }
 
     // [Close Window on Windows]: 1FN + Shift + C
-    if (is_win && is_1fn_on && (keycode == KC_C) && is_pressed) {
+    if (is_win && is_1fn_on && (keycode == KC_COPY) && is_pressed) {
         const bool is_l_shift = (get_mods() & MOD_BIT(KC_LSFT));
         if (is_l_shift) {
             clear_mods();
