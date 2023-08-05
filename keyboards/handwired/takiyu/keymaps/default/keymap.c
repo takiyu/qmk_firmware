@@ -53,7 +53,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_ESC,   _______, KC_F1  , KC_F2  , KC_F3  , KC_F4  , KC_F5  , KC_F6  ,    KC_F7  , KC_F8  , KC_F9  , KC_F10 , KC_F11 , KC_F12 , XXXXXXX, KC_DEL ,
         TO(_HOM), _______, _______, _______,TK_WIN_E, KC_LWIN, _______,___NG___,    TK_COPY, _______, _______, _______, TK_PAST, _______, KC_PGUP, _______,
         MO(_1FN), _______, TK_ALL , _______, KC_DEL , _______, _______,___NG___,    KC_LEFT, KC_DOWN, KC_UP  ,KC_RIGHT, _______, _______, KC_PGDN,___NG___,
-        MO(_2MO), _______, TK_UNDO, _______, TK_CUT , TK_COPY, TK_PAST, _______,    _______, _______, _______, _______, _______, _______, _______, _______,
+        MO(_2MO), _______, _______, TK_UNDO, TK_CUT , TK_COPY, TK_PAST, _______,    _______, _______, _______, _______, _______, _______, _______, _______,
         MO(_3DE), _______, KC_SCRL, _______, _______, _______, TK_SPC1,___NG___,   DF(_1FN),DF(_HOM), _______, _______, _______,  VOL_DN,  VOL_UP, TK_PSCR
     ),
 
