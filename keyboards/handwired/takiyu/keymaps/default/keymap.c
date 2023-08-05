@@ -79,12 +79,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // -----------------------------------------------------------------------------
 // ------------------------------- Key overrides -------------------------------
 // -----------------------------------------------------------------------------
-// Shift + Space -> PageUp
-const key_override_t override_shift_space1 =
-    ko_make_with_layers_and_negmods(MOD_MASK_SHIFT, TK_SPC1, KC_PGUP, (~0), MOD_MASK_ALT);
-const key_override_t override_shift_space2 =
-    ko_make_with_layers_and_negmods(MOD_MASK_SHIFT, TK_SPC2, KC_PGUP, (~0), MOD_MASK_ALT);
-
 // Ctrl + Space -> ZKHK
 const key_override_t override_ctrl_space1 = ko_make_basic(MOD_MASK_CTRL, TK_SPC1, JP_ZKHK);
 const key_override_t override_ctrl_space2 = ko_make_basic(MOD_MASK_CTRL, TK_SPC2, JP_ZKHK);
@@ -102,7 +96,6 @@ const key_override_t override_alt_6 = ko_make_basic(MOD_MASK_ALT, KC_6, JP_AMPR)
 
 // Register overrides
 const key_override_t **key_overrides = (const key_override_t *[]){
-    &override_shift_space1, &override_shift_space2,
     &override_ctrl_space1, &override_ctrl_space2,
     &override_alt_1, &override_alt_2, &override_alt_3, &override_alt_4,
     &override_alt_5, &override_alt_6,
@@ -135,6 +128,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     const bool is_win = (os_type == OS_WINDOWS || os_type == OS_UNSURE);
     const bool is_pressed = record->event.pressed;
     const bool is_1fn_on = IS_LAYER_ON(_1FN);
+    const bool is_2mo_on = IS_LAYER_ON(_2MO);
 
     // [Smart Alt-Tab]: 1FN/RALT + Tab/S
     if (is_win) {
@@ -198,6 +192,17 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             register_code(KC_LALT);    // LAlt: Push
             tap_code(KC_F4);           // LAlt+F4
             unregister_code(KC_LALT);  // LAlt: Release
+            return false;
+        }
+    }
+
+    // Shift + Space -> PageUp
+    if ((!is_1fn_on) && (!is_2mo_on) &&
+         (keycode == TK_SPC1 || keycode == TK_SPC2) && is_pressed) {
+        const bool is_l_shift = (get_mods() & MOD_BIT(KC_LSFT));
+        if (is_l_shift) {
+            clear_mods();
+            tap_code(KC_PGUP);  // PageUp
             return false;
         }
     }
