@@ -199,8 +199,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     // Shift + Space -> PageUp
     if ((!is_1fn_on) && (!is_2mo_on) &&
          (keycode == TK_SPC1 || keycode == TK_SPC2) && is_pressed) {
-        const bool is_l_shift = (get_mods() & MOD_BIT(KC_LSFT));
-        if (is_l_shift) {
+        const bool is_l_shift_only = (get_mods() == MOD_BIT(KC_LSFT));
+        if (is_l_shift_only) {
             clear_mods();
             tap_code(KC_PGUP);  // PageUp
             return false;
