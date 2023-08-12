@@ -129,36 +129,34 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     const bool is_pressed = record->event.pressed;
     const bool is_1fn_on = IS_LAYER_ON(_1FN);
     const bool is_2mo_on = IS_LAYER_ON(_2MO);
+    const bool is_r_alt = (get_mods() & MOD_BIT(KC_RALT));
 
     // [Smart Alt-Tab]: 1FN/RALT + Tab/S
-    if (is_win) {
-        const bool is_r_alt = (get_mods() & MOD_BIT(KC_RALT));
-        // Start
-        if ((is_1fn_on || is_r_alt) &&
-            (keycode == KC_TAB || keycode == KC_S) && is_pressed) {
-            g_takiyu_is_smart_alt_tab = true;
-            register_code(KC_RALT);  // Alt: Push
-            tap_code(KC_TAB);        // Alt+Tab
-            // takiyu_wait(100);
-            // tap_code(KC_LEFT);       // Left
-            layer_on(_1FN);          // 1FN: ON
-            return false;  // Skip all further processing of this key
-        }
-        // End
-        if (g_takiyu_is_smart_alt_tab) {
-            if (!(keycode == KC_TAB || keycode == KC_S ||
-                  keycode == KC_UP || keycode == KC_DOWN ||
-                  keycode == KC_LEFT || keycode == KC_RIGHT)) {
-                g_takiyu_is_smart_alt_tab = false;
-                unregister_code(KC_RALT);  // Alt: Release
-                layer_clear();             // Clear status
-                clear_keyboard();
-                if (keycode == KC_LWIN) {
-                    takiyu_wait(100);
-                    tap_code(KC_LWIN);  // Win
-                }
-                return false;  // Skip all further processing of this key
+    // Start
+    if ((is_1fn_on || (is_win && is_r_alt)) &&
+        (keycode == KC_S) && is_pressed) {
+        g_takiyu_is_smart_alt_tab = true;
+        register_code(KC_RALT);  // Alt: Push
+        tap_code(KC_TAB);        // Alt+Tab
+        // takiyu_wait(100);
+        // tap_code(KC_LEFT);       // Left
+        layer_on(_1FN);          // 1FN: ON
+        return false;  // Skip all further processing of this key
+    }
+    // End
+    if (g_takiyu_is_smart_alt_tab) {
+        if (!(keycode == KC_TAB || keycode == KC_S ||
+              keycode == KC_UP || keycode == KC_DOWN ||
+              keycode == KC_LEFT || keycode == KC_RIGHT)) {
+            g_takiyu_is_smart_alt_tab = false;
+            unregister_code(KC_RALT);  // Alt: Release
+            layer_clear();             // Clear status
+            clear_keyboard();
+            if (keycode == KC_LWIN) {
+                takiyu_wait(100);
+                tap_code(KC_LWIN);  // Win
             }
+            return false;  // Skip all further processing of this key
         }
     }
 
