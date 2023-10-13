@@ -25,7 +25,6 @@ enum custom_layer {
 #define TK_SPC1  LT(_1FN, KC_SPC)
 #define TK_SPC2  LT(_2MO, KC_SPC)
 #define TK_ESC   MT(MOD_LCTL, KC_ESC)
-#define KC_RALT1 MT(MOD_RALT, KC_TAB)
 #define TK_TAB3  LCTL(KC_TAB)
 #define TK_TAB2  LSFT(LCTL(KC_TAB))
 #define TK_STAB  LSFT(KC_TAB)
@@ -48,7 +47,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         TO(_HOM), KC_TAB , KC_Q   , KC_W   , KC_E   , KC_R   , KC_T   ,___NG___,    KC_Y   , KC_U   , KC_I   , KC_O   , KC_P   , JP_AT  , JP_LBRC, KC_ENT ,
         MO(_1FN), KC_LCTL, KC_A   , KC_S   , KC_D   , KC_F   , KC_G   ,___NG___,    KC_H   , KC_J   , KC_K   , KC_L   , JP_SCLN, JP_COLN, JP_RBRC,___NG___,
         MO(_2MO), KC_LSFT, KC_LSFT, KC_Z   , KC_X   , KC_C   , KC_V   , KC_B   ,    KC_B   , KC_N   , KC_M   , JP_COMM, JP_DOT , JP_SLSH, JP_BSLS, KC_RSFT,
-        MO(_3DE), KC_LCTL, KC_CAPS, KC_LWIN, KC_LALT,KC_RALT1, TK_SPC1,___NG___,    TK_SPC2, TK_ESC ,  KC_ENT, KC_APP , KC_RCTL, KC_LEFT,KC_RIGHT, KC_PSCR
+        MO(_3DE), KC_LCTL, KC_CAPS, KC_LWIN, KC_LALT, KC_RALT, TK_SPC1,___NG___,    TK_SPC2, TK_ESC , KC_ENT , KC_APP , KC_RCTL, KC_LEFT,KC_RIGHT, KC_PSCR
     ),
 
 
