@@ -202,8 +202,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
          (keycode == TK_SPC1 || keycode == TK_SPC2) && is_pressed) {
         const bool is_l_shift_only = (get_mods() == MOD_BIT(KC_LSFT));
         if (is_l_shift_only) {
-            clear_mods();
-            tap_code(KC_PGUP);  // PageUp
+            clear_mods();            // Release LShift
+            tap_code(KC_PGUP);       // PageUp
+            register_code(KC_LSFT);  // Pupsh LShift again
             return false;
         }
     }
