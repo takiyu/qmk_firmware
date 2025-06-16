@@ -120,7 +120,8 @@ void takiyu_wait(uint16_t ms) {
         wait_ms(1);
     }
 }
-bool g_takiyu_is_smart_alt_tab = false;
+bool g_takiyu_is_smart_alt = false;
+bool g_takiyu_is_smart_alt_released = false;
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     const os_variant_t os_type = detected_host_os();
     const bool is_win = (os_type == OS_WINDOWS || os_type == OS_UNSURE);
@@ -129,30 +130,23 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     const bool is_2mo_on = IS_LAYER_ON(_2MO);
     const bool is_r_alt = (get_mods() & MOD_BIT(KC_RALT));
 
-    // [Smart Alt-Tab]: 1FN/RALT + Tab/S
-    if (!g_takiyu_is_smart_alt_tab) {
-        // Detect starting
-        if ((is_1fn_on || is_r_alt) &&
-            (keycode == KC_S) && is_pressed) {
-            g_takiyu_is_smart_alt_tab = true;
-            if (is_win) {
-                // Windows Alt-Tab
+    if (is_win) {
+        // [Smart Alt-Tab (Windows)]: 1FN/RALT + S
+        if (!g_takiyu_is_smart_alt) {
+            // Detect starting
+            if ((is_1fn_on || is_r_alt) && (keycode == KC_S) && is_pressed) {
+                g_takiyu_is_smart_alt = true;
                 register_code(KC_RALT);  // Alt: Push
                 tap_code(KC_TAB);        // Alt+Tab
                 layer_on(_1FN);          // 1FN: ON
-            } else {
-                // Linux Sway
+                return false;  // Skip all further processing of this key
             }
-            return false;  // Skip all further processing of this key
-        }
-    } else {
-        // On-mode & Detect ending
-        if (is_win) {
-            // Windows End
+        } else {
             if (!(keycode == KC_TAB || keycode == KC_S ||
                   keycode == KC_UP || keycode == KC_DOWN ||
                   keycode == KC_LEFT || keycode == KC_RIGHT)) {
-                g_takiyu_is_smart_alt_tab = false;
+                // Finishing
+                g_takiyu_is_smart_alt = false;
                 unregister_code(KC_RALT);  // Alt: Release
                 layer_clear();             // Clear status
                 clear_keyboard();
@@ -162,25 +156,42 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 }
                 return false;  // Skip all further processing of this key
             }
-        } else {
-            if (keycode == KC_S) {
-                // Linux Sway on-mode: S
-                if (is_pressed) {
-                    g_takiyu_is_smart_alt_tab = false;  // Explicit end
-                }
-                // Ignoring S release
+        }
+
+    } else {
+        // [Smart Alt-Tab (Linux Sway)]: RALT + S
+        if (!g_takiyu_is_smart_alt) {
+            // Detect starting
+            if (is_r_alt && (keycode == KC_S) && is_pressed) {
+                g_takiyu_is_smart_alt = true;
+                g_takiyu_is_smart_alt_released = false;
                 return false;  // Skip all further processing of this key
-            } if (keycode == KC_H || keycode == KC_J ||
-                  keycode == KC_K || keycode == KC_L) {
-                // Linux Sway on-mode: H/J/K/L
+            }
+        } else {
+            // Detect RAlt-releasing
+            if (keycode == KC_RALT && !is_pressed) {
+                g_takiyu_is_smart_alt_released = true;
+            }
+            // Ignoring RAlt-S release
+            if ((keycode == KC_S || keycode == KC_RALT) && !is_pressed) {
+                return false;  // Skip all further processing of this key
+            }
+            // Handle screen moving
+            if (keycode == KC_H || keycode == KC_J ||
+                keycode == KC_K || keycode == KC_L) {
                 register_code(KC_LCTL);    // LCtrl: Push
                 tap_code(keycode);
                 unregister_code(KC_LCTL);  // LCtrl: Release
-                return false;  // Skip all further processing of this key
-            } else {
-                // Linux Sway end
-                g_takiyu_is_smart_alt_tab = false;
             }
+            // Finishing
+            g_takiyu_is_smart_alt = false;
+            clear_keyboard();
+            if (g_takiyu_is_smart_alt_released) {
+                unregister_code(KC_RALT);  // Restore alt-released
+            } else {
+                register_code(KC_RALT);  // Restore alt-pushed
+            }
+            return false;  // Skip all further processing of this key
         }
     }
 
