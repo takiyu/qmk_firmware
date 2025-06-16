@@ -54,16 +54,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // Function Layer
     [_1FN] = LAYOUT_5x8(
         KC_ESC,   _______, KC_F1  , KC_F2  , KC_F3  , KC_F4  , KC_F5  , KC_F6  ,    KC_F7  , KC_F8  , KC_F9  , KC_F10 , KC_F11 , KC_F12 , XXXXXXX, KC_DEL ,
-        TO(_HOM), _______, _______, _______,TK_WIN_E, KC_LWIN, _______,___NG___,    KC_TAB , _______, KC_BSPC,  KC_DEL, TK_STAB, _______, KC_PGUP, _______,
-        MO(_1FN), _______, TK_ALL , _______, KC_DEL , _______, _______,___NG___,    KC_LEFT, KC_DOWN, KC_UP  ,KC_RIGHT, JP_YEN , _______, KC_PGDN,___NG___,
-        MO(_2MO), _______, _______, TK_UNDO, TK_CUT , TK_COPY, TK_PAST, _______,    KC_BSPC, _______, KC_ENT,  _______, _______, _______, _______, _______,
+        TO(_HOM), TK_STAB, _______, _______,TK_WIN_E, KC_LWIN, _______,___NG___,    _______, _______, _______, _______, _______, _______, KC_PGUP, _______,
+        MO(_1FN), _______, TK_ALL , _______, KC_DEL , _______, _______,___NG___,    KC_LEFT, KC_DOWN, KC_UP  ,KC_RIGHT, _______, _______, KC_PGDN,___NG___,
+        MO(_2MO), _______, _______, TK_UNDO, TK_CUT , TK_COPY, TK_PAST, _______,    KC_BSPC, _______, _______, _______, _______, _______, _______, _______,
         MO(_3DE), _______, KC_SCRL, _______, _______, _______, TK_SPC1,___NG___,   DF(_1FN),DF(_HOM), _______, _______, _______,  VOL_DN,  VOL_UP, TK_PSCR
     ),
 
     // Mouse Layer
     [_2MO] = LAYOUT_5x8(
         KC_ESC,   _______, KC_F1  , TK_TAB2, TK_TAB3, KC_F4  , KC_F5  , KC_F6  ,    KC_F7  , KC_F8  , KC_HOME, KC_END ,  KC_F11,  KC_F12, XXXXXXX, KC_DEL ,
-        TO(_HOM), _______, DM_REC1, _______, _______, KC_WFWD, _______,___NG___,    KC_TAB , KC_WBAK, KC_BSPC,  KC_DEL, TK_STAB, DM_PLY1, KC_WH_U, _______,
+        TO(_HOM), _______, DM_REC1, _______, _______, KC_WFWD, _______,___NG___,    _______, _______, _______, _______, _______, DM_PLY1, KC_WH_U, _______,
         MO(_1FN), _______, DM_RSTP, KC_BTN2, KC_BTN3, KC_BTN1, _______,___NG___,    KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R, JP_YEN , _______, KC_WH_D,___NG___,
         MO(_2MO), _______, _______, _______, TK_CUT , TK_COPY, TK_PAST, _______,    KC_BSPC, _______, _______, _______, _______, _______, _______, _______,
         MO(_3DE), _______, KC_SCRL, _______, _______, _______,DF(_2MO),___NG___,    TK_SPC2,DF(_HOM), _______, _______, _______,  VOL_DN,  VOL_UP, TK_PSCR
