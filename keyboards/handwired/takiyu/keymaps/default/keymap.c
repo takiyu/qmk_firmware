@@ -182,6 +182,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 register_code(KC_LCTL);    // LCtrl: Push
                 tap_code(keycode);
                 unregister_code(KC_LCTL);  // LCtrl: Release
+            } else if (keycode == KC_S) {
+                tap_code(keycode);
             }
             // Finishing
             g_takiyu_is_smart_alt = false;
